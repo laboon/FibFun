@@ -3,6 +3,11 @@
 class Fib
 
   PHI = (1 + Math.sqrt(5)) / 2
+  LOOKUP_TABLE = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811]
+
+  def initialize
+  
+  end
 
   def recursive_fib(x)
     if (x == 0) then 
@@ -29,16 +34,20 @@ class Fib
     end
   end
 
+  def lookup_table_fib(x)
+    if (x < LOOKUP_TABLE.length) then
+      LOOKUP_TABLE[x]
+    else
+      nil
+    end
+  end
+
   def closed_form_fib(x)
     ((PHI ** x) / (Math.sqrt(5))).round
   end
 
   def closed_form_no_rounding_fib(x)
     (((PHI ** x) / (Math.sqrt(5))) + 0.5).floor
-  end
-
-  def limit_consecutive_quot_fib(x)
-    
   end
 
   def brute_force_fib(x)
@@ -57,18 +66,16 @@ class Fib
     end
   end
 
-  def combinatorial_ident_fib(x)
-
-  end
-
 end
 
 # EXECUTION STARTS HERE
 FIB_TO_FIND = 10
 puts "Fun with Fibonacci"
 f = Fib.new
-puts f.recursive_fib(FIB_TO_FIND)
+
+puts f.lookup_table_fib(FIB_TO_FIND)
 puts f.closed_form_fib(FIB_TO_FIND)
 puts f.closed_form_no_rounding_fib(FIB_TO_FIND)
-puts f.loop_fib(FIB_TO_FIND)
 puts f.brute_force_fib(FIB_TO_FIND)
+puts f.loop_fib(FIB_TO_FIND)
+puts f.recursive_fib(FIB_TO_FIND)
